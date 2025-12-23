@@ -77,7 +77,6 @@ secure configuration using environment variables.
 
 git clone <your-github-repository-link>
 
-Create virtual environment
 
 
 
@@ -85,7 +84,6 @@ Create virtual environment
 
 python -m venv venv
 
-Activate virtual environment
 
 
 
