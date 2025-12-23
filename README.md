@@ -125,7 +125,7 @@ python manage.py createsuperuser
 
 python manage.py runserver
 
-
+---
 
 Security Features Summary
 
@@ -137,7 +137,7 @@ Security Features Summary
 * Audit logs for security monitoring
 * Access control enforced on protected views
 
-
+---
 
 How to Use
 
@@ -146,14 +146,14 @@ How to Use
 * Users can view dashboard and profile
 * Unauthorized access is restricted
 
-
+---
 
 Dependencies
 
 * Django
 * python-dotenv
 
-
+---
 
 Screenshots
 
