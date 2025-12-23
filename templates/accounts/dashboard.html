@@ -4,11 +4,40 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Dashboard</h1>
+<h1>Dashboard</h1>
 
-    <p>Login successful!</p>
-    <p>Welcome, {{ request.user.username }}</p>
+<p>Welcome, {{ request.user.username }}</p>
+<a href="{% url 'profile' %}">Profile</a> | 
 
-    <a href="/logout/">Logout</a>
+<!-- Logout button as POST form -->
+<form method="post" action="{% url 'logout' %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+
+<h2>All Tasks</h2>
+<table border="1">
+<tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Created By</th>
+</tr>
+{% for task in tasks %}
+<tr>
+    <td>{{ task.title }}</td>
+    <td>{{ task.description }}</td>
+    <td>{{ task.user.username }}</td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="3">No tasks available.</td>
+</tr>
+{% endfor %}
+</table>
+
+{% if is_admin %}
+<p><a href="{% url 'audit_log' %}">View Audit Logs</a></p>
+{% endif %}
+
 </body>
 </html>

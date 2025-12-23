@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasks</title>
+</head>
+<body>
+    <h1>Task List</h1>
+
+    {% if request.user.is_superuser %}
+        <a href="/tasks/create/">Create New Task</a>
+    {% endif %}
+
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created By</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.created_by.username }}</td>
+            <td>
+                {% if request.user.is_superuser %}
+                    <a href="/tasks/update/{{ task.id }}/">Edit</a>
+                    <a href="/tasks/delete/{{ task.id }}/">Delete</a>
+                {% else %}
+                    View Only
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/accounts/dashboard/">Dashboard</a>
+</body>
+</html>

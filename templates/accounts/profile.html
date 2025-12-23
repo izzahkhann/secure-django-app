@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+</head>
+<body>
+<h1>Profile Page</h1>
+
+<p><strong>Username:</strong> {{ user.username }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Role:</strong> {% if user.is_superuser %}Admin{% else %}Normal User{% endif %}</p>
+
+<h2>My Tasks</h2>
+<table border="1">
+<tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Date Created</th>
+</tr>
+{% for task in user_tasks %}
+<tr>
+    <td>{{ task.title }}</td>
+    <td>{{ task.description }}</td>
+    <td>{{ task.created_at }}</td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="3">You have not created any tasks yet.</td>
+</tr>
+{% endfor %}
+</table>
+
+<p><a href="{% url 'dashboard' %}">Dashboard</a></p>
+
+</body>
+</html>
